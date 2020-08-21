@@ -16,11 +16,10 @@ public class Calender {
 
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("달을 입력하세요.");
-		String s1 = scanner.next();
-		int a = Integer.parseInt(s1);
+		int month = scanner.nextInt();
 		int ary[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 		
-		System.out.printf("%d월은 %d일 까지 있습니다.", a, ary[a + 1]);
+		System.out.printf("%d월은 %d일 까지 있습니다.", month, ary[month + 1]);
 		scanner.close();
 	}
 
