@@ -24,17 +24,17 @@ public class Calender {
 		
 		Scanner scanner = new Scanner(System.in);
 		Calender cal = new Calender();
-		
-		System.out.println("반복 횟수를 입력하세요.");
-		int repeat = scanner.nextInt();
-		
-		for(int i = 0 ; i < repeat ; i++) {
+		int month = 1;
+
+		while(month != -1) {
 			System.out.println("달을 입력하세요.");
-			int month = scanner.nextInt();
+			System.out.printf("cal > ");
+			month = scanner.nextInt();
 		
 			System.out.printf("%d월은 %d일 까지 있습니다.\n", month, cal.getMaxDaysOfMonth(month));
 		}
 		
+		System.out.println("Have a nice day!");
 		cal.printSampleCalender();
 		scanner.close();
 	}
