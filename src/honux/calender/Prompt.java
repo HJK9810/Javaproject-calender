@@ -3,8 +3,6 @@ import java.util.*;
 
 public class Prompt {
 
-	private final static String PROMPT = "cal > ";
-	
 	public void runPropt() {
 		Scanner scanner = new Scanner(System.in);
 		Calender cal = new Calender();
