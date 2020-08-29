@@ -21,7 +21,8 @@ public class Prompt {
 			if(month > 12) {
 				continue;
 			}
-			System.out.printf("%d월은 %d일 까지 있습니다.\n", month, cal.getMaxDaysOfMonth(month));
+			
+			cal.printCalender(2020, month);
 		}
 		
 		System.out.println("Have a nice day!");
