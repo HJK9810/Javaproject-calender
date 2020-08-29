@@ -1,5 +1,5 @@
 package honux.calender;
-import java.util.Scanner;
+import java.util.*;
 
 public class Prompt {
 
@@ -10,9 +10,13 @@ public class Prompt {
 		Calender cal = new Calender();
 		
 		int month = 1;
+		int year = 1;
 		while(true) {
+			System.out.println("년을 입력하세요.");
+			System.out.print("Year > ");
+			year = scanner.nextInt();
 			System.out.println("달을 입력하세요.");
-			System.out.print(PROMPT);
+			System.out.print("Month > ");
 			month = scanner.nextInt();
 			if(month == -1) {
 				break;
@@ -22,7 +26,7 @@ public class Prompt {
 				continue;
 			}
 			
-			cal.printCalender(2020, month);
+			cal.printCalender(year, month);
 		}
 		
 		System.out.println("Have a nice day!");
