@@ -71,7 +71,7 @@ public class Calender {
 			int delta = getMaxDaysOfMonth(year, i);
 			count += delta;
 		}
-		count += (day -1);
+		count += day;
 		
 		int weekday = (count + STANDARD_WEEKDAY) % 7;
 		return weekday;
