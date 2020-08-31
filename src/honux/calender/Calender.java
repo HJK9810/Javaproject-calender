@@ -23,18 +23,31 @@ public class Calender {
 		}
 	}
 	
-	public void printCalender(int year, int month) {
+	public void printCalender(int year, int month, int weekday) {
 		System.out.printf("    <<%4d년%3d월>>\n", year, month);
 		System.out.println(" SU MO TU We TH FR SA");
 		System.out.println("-----------------------");
 		
+		// print blank space
+		for(int i = 0 ; i < weekday ; i++) {
+			System.out.print("   ");
+		}
 		int maxDay = getMaxDaysOfMonth(year, month);
-		for(int i = 1; i <= maxDay ; i++) {
+		int count = 7 - weekday;
+		// print first line
+		for(int i = 1; i<= count; i++) {
 			System.out.printf("%3d", i);
-			if(i % 7 == 0) {
+		}
+		System.out.println();
+
+		// print second line ~ final line
+		for(int i = count + 1; i <= maxDay ; i++) {
+			System.out.printf("%3d", i);
+			if(i % 7 == count) {
 				System.out.println();
 			}
 		}
+		System.out.println();
 		System.out.println();
 	}
 	
