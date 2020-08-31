@@ -28,24 +28,24 @@ public class Prompt {
 		int year = 1;
 		int weekday = 0;
 		while(true) {
-			System.out.println("년을 입력하세요.");
+			System.out.println("년을 입력하세요. (exit : -1)");
 			System.out.print("Year > ");
 			year = scanner.nextInt();
+			if(year == -1)
+				break;
+			
 			System.out.println("달을 입력하세요.");
 			System.out.print("Month > ");
 			month = scanner.nextInt();
+			if(month > 12 || month < 1) {
+				System.out.println("잘못된 월을 입력하셨습니다.\n");
+				continue;
+			}
+			
 			System.out.println("첫쨰날의 요일을 입력하세요.(su, mo, tu, we, th, fr, sa)");
 			System.out.print("Weekday > ");
 			String str_weekday = scanner.next();
 			weekday = parseDay(str_weekday);
-			
-			if(month == -1) {
-				break;
-			}
-			
-			if(month > 12) {
-				continue;
-			}
 			
 			cal.printCalender(year, month, weekday);
 		}

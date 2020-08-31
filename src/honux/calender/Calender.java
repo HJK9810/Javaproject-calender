@@ -34,16 +34,19 @@ public class Calender {
 		}
 		int maxDay = getMaxDaysOfMonth(year, month);
 		int count = 7 - weekday;
+		int delim = count < 7 ? count : 0;
+				
 		// print first line
 		for(int i = 1; i<= count; i++) {
 			System.out.printf("%3d", i);
 		}
 		System.out.println();
+		count++;
 
 		// print second line ~ final line
-		for(int i = count + 1; i <= maxDay ; i++) {
+		for(int i = count; i <= maxDay ; i++) {
 			System.out.printf("%3d", i);
-			if(i % 7 == count) {
+			if(i % 7 == delim) {
 				System.out.println();
 			}
 		}
