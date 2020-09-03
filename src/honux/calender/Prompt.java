@@ -1,4 +1,5 @@
 package honux.calender;
+import java.text.ParseException;
 import java.util.*;
 
 public class Prompt {
@@ -28,7 +29,7 @@ public class Prompt {
 			return 0;
 	}
 
-	public void runPropt() {
+	public void runPropt() throws ParseException {
 		
 		printMenu();
 		
@@ -40,8 +41,8 @@ public class Prompt {
 		while(true) {
 			System.out.println("명령 (1, 2, 3, h, q)");
 			String cmd = scanner.next();
-			if(cmd.equals("1")) cmdRegistor();
-			else if(cmd.equals("2")) cmdSearch();
+			if(cmd.equals("1")) cmdRegistor(scanner, cal);
+			else if(cmd.equals("2")) cmdSearch(scanner, cal);
 			else if(cmd.equals("3")) cmdCal(scanner, cal);
 			else if(cmd.equals("h")) printMenu();
 			else if(cmd.equals("q")) break;	
@@ -53,7 +54,7 @@ public class Prompt {
 
 	
 	private void cmdCal(Scanner s, Calender c) {
-		// TODO Auto-generated method stub
+
 		int month = 1;
 		int year = 1;	
 		System.out.println("년을 입력하세요. (exit : -1)");
@@ -71,17 +72,33 @@ public class Prompt {
 			c.printCalender(year, month);
 	}
 
-	private void cmdSearch() {
-		// TODO Auto-generated method stub
-		
+	private void cmdSearch(Scanner s, Calender c) {
+		System.out.println("[일정 검색]");
+		System.out.println("날짜를 입력해 주세요 (yyyy-MM-dd).");
+		String date = s.next();
+		String plan = "";
+		try {
+			plan = c.serchPlan(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+			System.err.println("일정 검색중 오류가 발생.");
+		}
+		System.out.println(plan);
 	}
 
-	private void cmdRegistor() {
-		// TODO Auto-generated method stub
-		
+	private void cmdRegistor(Scanner s, Calender c) throws ParseException {
+		System.out.println("[새 일정 등록]");
+        System.out.println("날짜를 입력해 주세요 (yyyy-MM-dd).");
+        String date = s.next();
+        String text = "";
+        s.nextLine(); //ignore one newline
+        System.out.println("일정을 입력해 주세요.");
+        text = s.nextLine();
+
+        c.registerPlan(date, text);
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		Prompt p = new Prompt();
 		p.runPropt();
 	}	
