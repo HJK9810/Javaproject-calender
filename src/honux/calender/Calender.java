@@ -1,4 +1,5 @@
 package honux.calender;
+import java.io.*;
 import java.text.ParseException;
 import java.util.*;
 
@@ -6,6 +7,7 @@ public class Calender {
 	
 	private final int[] MAX_Days = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 	private final int[] LEAP_MAX_Days = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	private final String SAVE_FILE = "calener.dat";
 	
 	private HashMap <Date, PlanItem> planMap;
 	
@@ -20,6 +22,16 @@ public class Calender {
 	public void registerPlan(String strDate, String plan) {
 		PlanItem p = new PlanItem(strDate, plan);
 		planMap.put(p.getDate(), p);
+		
+		File f = new File(SAVE_FILE);
+		String item = p.saveString();
+		try {
+			FileWriter fw = new FileWriter(f, true);
+			fw.write(item);
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	// 일정 검색
 	public PlanItem serchPlan(String strDate) {
