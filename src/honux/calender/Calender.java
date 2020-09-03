@@ -13,6 +13,24 @@ public class Calender {
 	
 	public Calender() {
 		planMap = new HashMap <Date, PlanItem>();
+		File f = new File(SAVE_FILE);
+		if(!f.exists())
+			return;
+		try {
+			Scanner s = new Scanner(f);
+			
+			while(!s.hasNext()) {
+				String line = s.nextLine();
+				String[] word = line.split(",");
+				String date = word[0];
+				String detail = word[1].replaceAll("\"", "");
+				PlanItem p = new PlanItem(date, detail);
+				planMap.put(p.getDate(), p);
+			}
+			s.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	/**
 	 *  date : 0000-00-00
